@@ -1,42 +1,43 @@
 import React, { Component } from 'react';
-import NewTodo from '../components/NewTodo';
-import TodoList from '../components/TodoList';
+import { connect, ConnectedProps } from 'react-redux';
+
+import * as actions from '../store/actions/index';
+import NewTodo from '../components/NewTodo/NewTodo';
+import TodoList from '../components/TodoList/TodoList';
 import { Todo } from '../models/todo.model';
 
-interface State {
-  todos: Todo[]
-};
 
-class Layout extends Component {
-  readonly state: State = {
-    todos: []
-  }
+const mapStateToProps = (state: {todos: {todos: Todo[]}}) => ({
+  todos: state.todos.todos
+})
 
-  addTodoHandler = (input: string) => {
-    const todoId = Math.random().toString();
-    const newTodo: Todo = {
-      id: todoId,
-      text: input
-    }
+const mapDispatchToProps = (dispatch: any) => ({
+  addTodo: (text: string) => dispatch(actions.addTodo(text)),
+  deleteTodo: (id: string) => dispatch(actions.deleteTodo(id))
+})
 
-    this.setState({ todos: [...this.state.todos, newTodo]})
-  }
+const connector = connect(mapStateToProps, mapDispatchToProps)
 
-  todoDeleteHandler = (id: string) => {
-    let updatedTodos = [...this.state.todos];
-    this.setState({ 
-      todos: updatedTodos.filter(todo => todo.id !== id)
-    })
-  }
+type PropsFromRedux = ConnectedProps<typeof connector>
 
+type LayoutProps = PropsFromRedux & {
+  todos: Todo[],
+  addTodo: (text: string)=> void,
+  deleteTodo: (id: string)=> void
+}
+
+class Layout extends React.Component<LayoutProps> {
   render() {
+    console.log(this.props)
     return(
       <div className="Layout">
-       <NewTodo addTodo={this.addTodoHandler}/>
-       <TodoList todos={this.state.todos} onDelete={this.todoDeleteHandler}/>
+       <NewTodo addTodo={this.props.addTodo}/>
+       <TodoList todos={this.props.todos} onDelete={this.props.deleteTodo}/>
       </div>
     );
   }
 };
 
-export default Layout;
+
+
+export default connector(Layout);
