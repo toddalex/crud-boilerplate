@@ -3,6 +3,6 @@ export type Todo = {
   text: string;
 }
 
-export interface InitialState {
+export interface TodoState {
  todos: Todo[]
 }

@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
 import * as actions from '../store/actions/index';
+import { TodoActionTypes } from '../constants/actionTypes'
 import NewTodo from '../components/NewTodo/NewTodo';
 import TodoList from '../components/TodoList/TodoList';
-import { Todo } from '../models/todo.model';
+import { Todo, TodoState } from '../models/todo.model';
 
 
-const mapStateToProps = (state: {todos: {todos: Todo[]}}) => ({
+const mapStateToProps = (state: {todos: TodoState}) => ({
   todos: state.todos.todos
 })
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: (func: TodoActionTypes)=> void) => ({
   addTodo: (text: string) => dispatch(actions.addTodo(text)),
   deleteTodo: (id: string) => dispatch(actions.deleteTodo(id))
 })
@@ -37,7 +38,5 @@ class Layout extends React.Component<LayoutProps> {
     );
   }
 };
-
-
 
 export default connector(Layout);

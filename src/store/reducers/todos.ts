@@ -1,12 +1,12 @@
 import * as actionTypes from '../../constants/actionTypes';
-import { Todo, InitialState } from '../../models/todo.model';
+import { Todo, TodoState } from '../../models/todo.model';
 // import { updateObject } from '../../shared/utils';
 
-const initialState: InitialState = {
+const initialState: TodoState = {
   todos: []
 }
 
-const todoReducer = (state = initialState, action: actionTypes.TodoActionTypes ): InitialState => {
+const todoReducer = (state = initialState, action: actionTypes.TodoActionTypes ): TodoState => {
   switch (action.type) {
     case actionTypes.ADD_TODO: {
       const todoId = Math.random().toString();
