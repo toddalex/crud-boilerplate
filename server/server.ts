@@ -1,11 +1,14 @@
 import express, { Request, Response, NextFunction} from 'express';
-import { json } from 'body-parser';
+import bodyParser, { json } from 'body-parser';
 
+const cors = require('cors')
 import todoRoutes from './routes/api';
 
 const app = express();
 
+app.use(cors());
 app.use(json());
+// app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/todos', todoRoutes);
 
