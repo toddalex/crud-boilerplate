@@ -5,7 +5,7 @@ interface Props {
   addTodo: (input: string) => void;
 }
 
-const NewTodo: React.FC<Props> = ({ addTodo }) => {
+const NewTodo: React.FC<Props> = React.memo(({ addTodo }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const todoSubmitHandler = (event: React.FormEvent) => {
@@ -23,6 +23,6 @@ const NewTodo: React.FC<Props> = ({ addTodo }) => {
       </div>
     </form>
   )
-};
+});
 
 export default NewTodo;
