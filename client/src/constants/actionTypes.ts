@@ -10,11 +10,11 @@ export const ADD_TEMP_TODO = 'ADD_TEMP_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const DELETE_TEMP_TODO = 'DELETE_TEMP_TODO';
 
-interface getTodosStart {
+export interface getTodosStart {
   type: typeof GET_TODOS_START
 }
 
-interface getTodosSuccess {
+export interface getTodosSuccess {
   type: typeof GET_TODOS_SUCCESS
   todos: Todo[]
 }
@@ -28,7 +28,7 @@ interface addTodoAction {
   text: string
 }
 
-interface addTempTodoAction {
+export interface addTempTodoAction {
   type: typeof ADD_TEMP_TODO 
   text: string
 }
@@ -38,7 +38,7 @@ interface deleteTodoAction {
   id: string
 }
 
-interface deleteTempTodoAction {
+export interface deleteTempTodoAction {
   type: typeof DELETE_TEMP_TODO
   id: string
 }
