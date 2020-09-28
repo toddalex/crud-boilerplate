@@ -4,7 +4,8 @@ import { updateObject } from '../../shared/utils';
 
 const initialState: TodoState = {
   todos: [],
-  loading: false
+  loading: false,
+  error: null
 };
 
 const addTempTodo = (state = initialState, action: actionTypes.addTempTodoAction): TodoState => {
@@ -42,12 +43,29 @@ const getTodosSuccess = (state = initialState, action: actionTypes.getTodosSucce
   });
 };
 
+const getTodosFail = (state = initialState, action: actionTypes.getTodosFail): TodoState => {
+  console.log('gettodosfail')
+  return updateObject(state, {
+      loading: false,
+      error: action.message,
+  });
+};
+
+const clearError = (state = initialState, action: actionTypes.clearError): TodoState => {
+  return updateObject(state, {
+      error: null,
+  });
+};
+
+
 const todoReducer = (state = initialState, action: actionTypes.TodoActionTypes): TodoState => {
   switch (action.type) {
     case actionTypes.ADD_TEMP_TODO: return addTempTodo(state, action);
     case actionTypes.DELETE_TEMP_TODO: return deleteTempTodo(state, action);
     case actionTypes.GET_TODOS_START: return getTodosStart(state, action);
     case actionTypes.GET_TODOS_SUCCESS: return getTodosSuccess(state, action);
+    case actionTypes.GET_TODOS_FAIL: return getTodosFail(state, action);
+    case actionTypes.CLEAR_ERROR: return clearError(state, action);
     default: return state;
   };
 };

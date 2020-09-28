@@ -10,6 +10,8 @@ export const ADD_TEMP_TODO = 'ADD_TEMP_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const DELETE_TEMP_TODO = 'DELETE_TEMP_TODO';
 
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+
 export interface getTodosStart {
   type: typeof GET_TODOS_START
 }
@@ -17,6 +19,11 @@ export interface getTodosStart {
 export interface getTodosSuccess {
   type: typeof GET_TODOS_SUCCESS
   todos: Todo[]
+}
+
+export interface getTodosFail {
+  type: typeof GET_TODOS_FAIL
+  message: string
 }
 
 interface getTodos {
@@ -43,6 +50,10 @@ export interface deleteTempTodoAction {
   id: string
 }
 
+export interface clearError {
+  type: typeof CLEAR_ERROR
+}
+
 export type TodoActionTypes = 
   addTodoAction | 
   addTempTodoAction |
@@ -50,4 +61,6 @@ export type TodoActionTypes =
   deleteTempTodoAction |
   getTodosStart |
   getTodosSuccess |
-  getTodos
+  getTodosFail |
+  getTodos | 
+  clearError

@@ -10,7 +10,14 @@ export const getTodosStart = (): actionTypes.TodoActionTypes => {
 export const getTodosSuccess = (todos: Todo[]): actionTypes.TodoActionTypes => {
   return {
     type: actionTypes.GET_TODOS_SUCCESS,
-    todos: todos
+    todos,
+  }
+}
+
+export const getTodosFail = (message: string): actionTypes.TodoActionTypes => {
+  return {
+    type: actionTypes.GET_TODOS_FAIL,
+    message,
   }
 }
 
@@ -45,6 +52,12 @@ export const addTempTodo = (payload: Todo): actionTypes.TodoActionTypes => {
   return {
     type: actionTypes.ADD_TEMP_TODO,
     payload,
+  }
+}
+
+export const clearError = (): actionTypes.TodoActionTypes => {
+  return {
+    type: actionTypes.CLEAR_ERROR,
   }
 }
 

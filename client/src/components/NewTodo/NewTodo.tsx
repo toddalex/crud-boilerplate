@@ -1,17 +1,10 @@
 import React, { useRef } from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 
 import './NewTodo.css';
-import * as actions from '../../store/actions/index';
-import { TodoActionTypes } from '../../constants/actionTypes';
 
-const mapDispatchToProps = (dispatch: (func: TodoActionTypes)=> void) => ({
-  addTodo: (text: string) => dispatch(actions.addTodo(text)),
-})
-
-const connector = connect(null, mapDispatchToProps);
-
-type NewTodoProps = ConnectedProps<typeof connector>;
+interface NewTodoProps {
+  addTodo: (inputText: string)=> void;
+};
 
 const NewTodo: React.FC<NewTodoProps> = React.memo(({ addTodo }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -20,7 +13,7 @@ const NewTodo: React.FC<NewTodoProps> = React.memo(({ addTodo }) => {
     event.preventDefault();
     const inputText = inputRef.current!.value;
     addTodo(inputText);
-  }
+  };
 
   return(
     <form onSubmit={todoSubmitHandler}>
@@ -33,4 +26,4 @@ const NewTodo: React.FC<NewTodoProps> = React.memo(({ addTodo }) => {
   )
 });
 
-export default connector(NewTodo);
+export default NewTodo;

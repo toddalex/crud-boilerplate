@@ -8,7 +8,8 @@ export function* getTodosSaga() {
     const response = yield axios.get('http://localhost:8080/todos')
     yield put (actions.getTodosSuccess(response.data))
   } catch (error) {
-    yield console.log(error)
+    console.log('ya blew it')
+    yield put (actions.getTodosFail(error.message));
   }
 }
 
@@ -17,7 +18,7 @@ export function* addTodoSaga(input: string) {
     const response = yield axios.post('http://localhost:8080/todos', input)
     yield put (actions.addTempTodo(response.data))
   } catch (error) {
-    yield console.log(error)
+    yield put (actions.getTodosFail(error.message));
   }
 }
 
@@ -27,6 +28,6 @@ export function* deleteTodoSaga(input: {type: string, id: string}) {
     yield axios.delete(`http://localhost:8080/todos/${id}`)
     yield put (actions.deleteTempTodo(id))
   } catch(error) {
-    yield console.log(error)
+    yield put (actions.getTodosFail(error.message));
   }
 }

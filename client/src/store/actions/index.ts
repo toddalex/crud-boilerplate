@@ -5,5 +5,7 @@ export {
   deleteTempTodo,
   getTodosStart,
   getTodosSuccess,
-  getTodos
+  getTodosFail,
+  getTodos,
+  clearError
 } from './todos'
