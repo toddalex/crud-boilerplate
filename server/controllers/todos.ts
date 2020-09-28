@@ -17,12 +17,11 @@ export const addTodo: RequestHandler = (req, res, next) => {
   db.query(addTodoQuery, [text])
   .then((todos: {rows: Todo[]}) => {
     res.json(todos.rows[0])
-    next();
   })
   .catch((err: Error) => console.log(err))
 }
 
-export const deleteTodo: RequestHandler = (req, res, next) => {
+export const deleteTodo: RequestHandler<{id: string}> = (req, res, next) => {
   const id = (req.params as {id: string}).id;
   const deleteTodoQuery = `DELETE FROM todos WHERE id = $1`;
   db.query(deleteTodoQuery, [id])

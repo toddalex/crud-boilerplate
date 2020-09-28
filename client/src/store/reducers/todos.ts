@@ -8,10 +8,10 @@ const initialState: TodoState = {
 };
 
 const addTempTodo = (state = initialState, action: actionTypes.addTempTodoAction): TodoState => {
-  const tempId = Math.random().toString();
+  
   const newTodo: Todo = {
-    id: tempId,
-    text: action.text
+    id: action.payload.id,
+    text: action.payload.text
   };
 
   const updatedTodos = state.todos.slice()
@@ -49,7 +49,7 @@ const todoReducer = (state = initialState, action: actionTypes.TodoActionTypes):
     case actionTypes.GET_TODOS_START: return getTodosStart(state, action);
     case actionTypes.GET_TODOS_SUCCESS: return getTodosSuccess(state, action);
     default: return state;
-  }
+  };
 };
 
 export default todoReducer;

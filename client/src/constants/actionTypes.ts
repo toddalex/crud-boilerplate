@@ -30,7 +30,7 @@ interface addTodoAction {
 
 export interface addTempTodoAction {
   type: typeof ADD_TEMP_TODO 
-  text: string
+  payload: Todo
 }
 
 interface deleteTodoAction {

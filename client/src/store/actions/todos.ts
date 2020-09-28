@@ -41,10 +41,10 @@ export const addTodo = (text: string): actionTypes.TodoActionTypes => {
   }
 }
 
-export const addTempTodo = (text: string): actionTypes.TodoActionTypes => {
+export const addTempTodo = (payload: Todo): actionTypes.TodoActionTypes => {
   return {
     type: actionTypes.ADD_TEMP_TODO,
-    text,
+    payload,
   }
 }
 

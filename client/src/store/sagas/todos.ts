@@ -15,7 +15,7 @@ export function* getTodosSaga() {
 export function* addTodoSaga(input: string) {
   try {
     const response = yield axios.post('http://localhost:8080/todos', input)
-    yield put (actions.addTempTodo(response.data.text))
+    yield put (actions.addTempTodo(response.data))
   } catch (error) {
     yield console.log(error)
   }
